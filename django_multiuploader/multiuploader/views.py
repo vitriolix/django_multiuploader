@@ -18,23 +18,6 @@ import logging
 log = logging
 
 @csrf_exempt
-def multiuploader_delete(request, pk):
-    """
-    View for deleting photos with multiuploader AJAX plugin.
-    made from api on:
-    https://github.com/blueimp/jQuery-File-Upload
-    """
-    if request.method == 'POST':
-        log.info('Called delete image. image id='+str(pk))
-        image = get_object_or_404(MultiuploaderImage, pk=pk)
-        image.delete()
-        log.info('DONE. Deleted photo id='+str(pk))
-        return HttpResponse(str(pk))
-    else:
-        log.info('Received not POST request to delete image view')
-        return HttpResponseBadRequest('Only POST accepted')
-
-@csrf_exempt
 def multiuploader(request):
     """
     Main Multiuploader module.
